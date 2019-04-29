@@ -1,7 +1,7 @@
 //Name: Isaac Fleury
 //Student No.: 3303446
 
-#include <stdio.h> //inlcuding libraries that will be used within the programe
+#include <stdio.h> //inlcuding libraries that will be used within the program
 
 //include function for each question on project notes where user inputs in a menu system in the main function
 int taskOne();      //Declaration of function for task one
