@@ -1,18 +1,20 @@
-#include <stdio.h>
+#include <stdio.h> //inlcuding libraries that will be used within the programe
 
 //include function for each question on project notes where user inputs in a menu system in the main function
-int taskOne();
-int taskTwo();
-int taskThree();
-int taskFour();
+int taskOne();      //Declaration of function for task one
+int taskTwo();      //Declaration of function for task two   
+void taskThree();   //Declaration of function for task three
+void taskFour();    //Declaration of function for task four
 
-int main() {
+int main() {        //beginning of main function
     
-    int choice;
+    int choice;     //holder for users choice of encrytion/decryption function
     
-    printf("Hello!\n");
+    printf("Hello!\n"); //basic printf functions to display choices for the user followered by a ouput template
     
     printf("Welcome to the Decryption/Encryption program!\n\n");
+    
+    printf("Ensure that the you have placed the message you would like to encrypt/decrypt in the input.txt file before continuing.\n\n");
     
     printf("Please select from the following options:\n");
     
@@ -34,40 +36,41 @@ int main() {
     
     printf("_____________________________________________________________________________________________________\n\n");
     
-   choice = 1;
+    printf("Selection: ");
     
-    switch(choice){
+    scanf("%d", &choice); //receives input from user as per function choice
+    
+    switch(choice){       // start switch function for user choice
         
-        case 1:
+        case 1:           // if choice is = 1
         
-            taskOne();
+            taskOne();    // 
         
             break;
         
-        /*case 2:
+        case 2:         
         
             taskTwo();
             
             break;
-        */
-        /*case 3:
+        
+        case 3:
             
             taskThree();
             
             break;
-        */
-        /*case 4:
+        
+        case 4:
             
             taskFour();
             
             break;
-        */
+        
         default:
         
-            printf("Your choice does not match any of the listed tasks!");
+            printf("Your choice does not match any of the listed tasks!\n");
             
         }
-        
     
         return 0;
     }
@@ -77,20 +80,221 @@ int taskOne(){
     
     FILE *input;
     
+    int key;
+    
     int i = 0;
     
     char inp[100];
     
+    char hold;
+    
+    printf("Please enter the key you would like to use: ");
+    
+    scanf("%d", &key);
+
     input = fopen("input.txt", "r");
      
      while(!feof(input)){
          
          fscanf(input, "%c", &inp[i]);
          
-         printf("%c", inp[i]);
+         if(inp[i] == 32 ){
+             
+            printf("%c", inp[i]);
+            
+            i++;
          
-         i++;
-         
+         } 
+         else {
+             
+            if(inp[i] >= 'A' && inp[i] <= 'Z'){
+                
+                hold = (inp[i] - key + 65) % 26;
+                
+                printf("%c", (hold + 65));
+                
+                i++;
+                
+            }
+            
+            else {
+                printf("%c", inp[i]);
+            }
+
+         }
+
      }
+     printf("\n");
          return 0;
     }
+    
+    int taskTwo(){
+        
+        FILE *input;
+    
+        int key;
+    
+        int i = 0;
+    
+        char inp[100];
+    
+        char hold;
+    
+        printf("Please enter the key you would like to use: ");
+    
+        scanf("%d", &key);
+
+        input = fopen("input.txt", "r");
+     
+        while(!feof(input)){
+         
+            fscanf(input, "%c", &inp[i]);
+         
+            if(inp[i] == 32 ){
+             
+                printf("%c", inp[i]);
+            
+                i++;
+         
+            } 
+            else {
+             
+            if(inp[i] >= 'A' && inp[i] <= 'Z'){
+                
+                hold = (inp[i] + key - 65) % 26;
+                
+                printf("%c", (hold + 65));
+                
+                i++;
+                
+            }
+            
+            else {
+                
+                printf("%c", inp[i]);
+                
+            }
+            
+         }
+    
+    }
+
+printf("\n");
+
+return 0;
+}
+
+void taskThree(){
+    
+    FILE *input;
+    
+    int i = 0, x, hold;
+    
+    char keyArr[100];
+    
+    char inp[100];
+    
+    printf("Please enter the sub you would like to use: ");
+    
+    scanf("%s", keyArr);
+
+    input = fopen("input.txt", "r");
+    
+    while(!feof(input)){
+         
+        fscanf(input, "%c", &inp[i]);
+         
+        if(inp[i] == 32 ){
+             
+            printf("%c", inp[i]);
+            
+            i++;
+            
+        }
+    
+        else{
+        
+                for(x = 0; x < 26; x++){
+            
+                    hold = x + 65;
+            
+                    if(inp[i] == hold){
+                    
+                        inp[i] = keyArr[x];
+                        
+                        printf("%c", inp[i]);
+                        
+                        break;
+                        
+                    }
+                
+                }
+                
+            i++;
+        
+        }
+
+    }
+    
+    printf("\n");
+    
+return;
+
+}
+
+void taskFour(){
+    
+    FILE *input;
+    
+    int i = 0, x;
+    
+    char keyArr[100];
+    
+    char inp[100];
+    
+    char alpha[26] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    
+    printf("Please enter the sub you would like to use: ");
+    
+    scanf("%s", keyArr);
+
+    input = fopen("input.txt", "r");
+    
+    while(!feof(input)){
+         
+        fscanf(input, "%c", &inp[i]);
+         
+        if(inp[i] == 32 ){
+             
+            printf("%c", inp[i]);
+            
+            i++;
+            
+        }
+    
+        else{
+        
+                for(x = 0; x < 26; x++){
+            
+                    if(inp[i] == keyArr[x]){
+                        
+                        inp[i] = alpha[x];
+                        
+                        printf("%c", inp[i]);
+                        
+                        break;
+                        
+                    }
+                
+                }
+                
+            i++;
+        
+        }
+
+    }
+    
+    printf("\n");
+    
+return;
+}
