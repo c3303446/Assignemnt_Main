@@ -1,6 +1,5 @@
-iun 
-
-
+//Name: Isaac Fleury
+//Student No.: 3303446
 
 #include <stdio.h> //inlcuding libraries that will be used within the programe
 
@@ -279,23 +278,23 @@ void taskFour(){                                        // function taskFour
             
                     if(inp[i] == keyArr[x]){            // if inp[i] = keyArr[x] then... if not then keep looping until keyArr[x] is the same as inp[i]
                         
-                        inp[i] = alpha[x];              // make inp
+                        inp[i] = alpha[x];              // make inp[i] equal the position that alligns with the array alpha
                         
-                        printf("%c", inp[i]);
+                        printf("%c", inp[i]);           // print the decrypted character in position inp[i]
                         
-                        break;
+                        break;                          // stop for loop once a match has been found
                         
                     }
                 
                 }
                 
-            i++;
+            i++;                                        // increment i within while loop i + 1
         
         }
 
     }
     
-    printf("\n");
+    printf("\n");                                       // new line for structure
     
-return;
+return;                                                 // return void function
 }
